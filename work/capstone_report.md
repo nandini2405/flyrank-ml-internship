@@ -311,6 +311,12 @@ On the held-out **May → June 2026** test period, the notebook's model comparis
 
 The Logistic Regression ranking produced the highest reported Precision@20 and Average Precision, while the Decision Tree produced the highest reported Precision@50. At K=20, 16 of the top 20 Logistic Regression-ranked pages experienced the target CTR decline, while 6 of the top 20 pages selected by the baseline experienced the target decline.
 
+### Results comparison
+
+The following chart compares the transparent baseline, Logistic Regression, and Decision Tree on the same held-out May → June 2026 test period.
+
+<canvas id="resultsChart" style="max-width: 900px; max-height: 450px;"></canvas>
+
 The results indicate that, on this held-out period, the Logistic Regression ranking placed more observed CTR declines near the top of the review queue than the transparent baseline.
 
 ### Error interpretation
