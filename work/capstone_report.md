@@ -316,6 +316,14 @@ The Logistic Regression ranking produced the highest reported Precision@20 and A
 The following chart compares the transparent baseline, Logistic Regression, and Decision Tree on the same held-out May → June 2026 test period.
 
 
+| Model | Precision@20 | Precision@50 | Average Precision |
+|---|---:|---:|---:|
+| Baseline | 0.30 | 0.26 | 0.332 |
+| Logistic Regression | 0.80 | 0.74 | 0.647 |
+| Decision Tree | 0.70 | 0.80 | 0.605 |
+
+**Figure 1. Held-out ranking performance on the May → June 2026 test period.**
+
 The results indicate that, on this held-out period, the Logistic Regression ranking placed more observed CTR declines near the top of the review queue than the transparent baseline.
 
 ### Error interpretation
