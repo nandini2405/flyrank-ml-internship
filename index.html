@@ -25,6 +25,11 @@
             text-align: left;
         }
 
+        #chart-container {
+            max-width: 900px;
+            margin: 40px;
+        }
+
         h1, h2, h3, h4 {
             text-align: left;
         }
@@ -59,7 +64,12 @@
     <p>Loading report...</p>
 </div>
 
-<div id="chart-container" style="max-width: 900px; margin: 40px 40px 40px 40px;">
+<div id="chart-container">
+    <h2>Results comparison</h2>
+    <p>
+        Held-out ranking performance on the May–June 2026 test period.
+    </p>
+
     <canvas id="resultsChart"></canvas>
 </div>
 
@@ -76,62 +86,68 @@
             return response.text();
         })
         .then(markdown => {
-    document.getElementById("report").innerHTML =
-        marked.parse(markdown);
 
-    const ctx = document.getElementById("resultsChart");
+            document.getElementById("report").innerHTML =
+                marked.parse(markdown);
 
-    if (ctx) {
-        new Chart(ctx, {
-            type: "bar",
-            data: {
-                labels: [
-                    "Baseline",
-                    "Logistic Regression",
-                    "Decision Tree"
-                ],
-                datasets: [
-                    {
-                        label: "Precision@20",
-                        data: [0.30, 0.80, 0.70]
-                    },
-                    {
-                        label: "Precision@50",
-                        data: [0.26, 0.74, 0.80]
-                    },
-                    {
-                        label: "Average Precision",
-                        data: [0.332, 0.647, 0.605]
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: "top"
-                    },
-                    title: {
-                        display: true,
-                        text: "Held-out ranking performance (May–June 2026)"
-                    }
+            const ctx = document.getElementById("resultsChart");
+
+            new Chart(ctx, {
+                type: "bar",
+
+                data: {
+                    labels: [
+                        "Baseline",
+                        "Logistic Regression",
+                        "Decision Tree"
+                    ],
+
+                    datasets: [
+                        {
+                            label: "Precision@20",
+                            data: [0.30, 0.80, 0.70]
+                        },
+                        {
+                            label: "Precision@50",
+                            data: [0.26, 0.74, 0.80]
+                        },
+                        {
+                            label: "Average Precision",
+                            data: [0.332, 0.647, 0.605]
+                        }
+                    ]
                 },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 1,
+
+                options: {
+                    responsive: true,
+
+                    plugins: {
+                        legend: {
+                            position: "top"
+                        },
+
                         title: {
                             display: true,
-                            text: "Metric value (0–1)"
+                            text: "Held-out ranking performance (May–June 2026)"
+                        }
+                    },
+
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 1,
+
+                            title: {
+                                display: true,
+                                text: "Metric value (0–1)"
+                            }
                         }
                     }
                 }
-            }
-        });
-    }
-})
-       
+            });
+        })
         .catch(error => {
+
             document.getElementById("report").innerHTML =
                 "<h2>Unable to load report</h2>" +
                 "<p>" + error.message + "</p>";
