@@ -90,7 +90,10 @@
             let resultsHeading = null;
 
             headings.forEach(heading => {
-                if (heading.textContent.trim().toLowerCase() === "results comparison") {
+                if (
+                    heading.textContent.trim().toLowerCase()
+                    === "results comparison"
+                ) {
                     resultsHeading = heading;
                 }
             });
@@ -104,6 +107,7 @@
              * Create the chart container.
              */
             const chartContainer = document.createElement("div");
+
             chartContainer.id = "chart-container";
 
             chartContainer.innerHTML = `
@@ -111,13 +115,13 @@
             `;
 
             /*
-             * Insert the chart immediately after the
-             * Results comparison section's table.
+             * Find the Results comparison table.
              */
             let current = resultsHeading.nextElementSibling;
             let table = null;
 
             while (current) {
+
                 if (current.tagName === "TABLE") {
                     table = current;
                     break;
@@ -126,9 +130,18 @@
                 current = current.nextElementSibling;
             }
 
+            /*
+             * Put the chart immediately below the table.
+             */
             if (table) {
-                table.insertAdjacentElement("afterend", chartContainer);
+
+                table.insertAdjacentElement(
+                    "afterend",
+                    chartContainer
+                );
+
             } else {
+
                 resultsHeading.insertAdjacentElement(
                     "afterend",
                     chartContainer
@@ -138,12 +151,15 @@
             /*
              * Create the chart.
              */
-            const ctx = document.getElementById("resultsChart");
+            const ctx =
+                document.getElementById("resultsChart");
 
             new Chart(ctx, {
+
                 type: "bar",
 
                 data: {
+
                     labels: [
                         "Baseline",
                         "Logistic Regression",
@@ -151,42 +167,56 @@
                     ],
 
                     datasets: [
+
                         {
                             label: "Precision@20",
                             data: [0.30, 0.80, 0.70]
                         },
+
                         {
                             label: "Precision@50",
                             data: [0.26, 0.74, 0.80]
                         },
+
                         {
                             label: "Average Precision",
                             data: [0.332, 0.647, 0.605]
                         }
+
                     ]
                 },
 
                 options: {
+
                     responsive: true,
 
                     plugins: {
+
                         legend: {
                             position: "top"
                         },
 
                         title: {
+
                             display: true,
-                            text: "Held-out ranking performance (May–June 2026)"
+
+                            text:
+                                "Held-out ranking performance (May–June 2026)"
                         }
                     },
 
                     scales: {
+
                         y: {
+
                             beginAtZero: true,
+
                             max: 1,
 
                             title: {
+
                                 display: true,
+
                                 text: "Metric value (0–1)"
                             }
                         }
