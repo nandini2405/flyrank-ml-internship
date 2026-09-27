@@ -72,9 +72,61 @@
             return response.text();
         })
         .then(markdown => {
-            document.getElementById("report").innerHTML =
-                marked.parse(markdown);
-        })
+    document.getElementById("report").innerHTML =
+        marked.parse(markdown);
+
+    const ctx = document.getElementById("resultsChart");
+
+    if (ctx) {
+        new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: [
+                    "Baseline",
+                    "Logistic Regression",
+                    "Decision Tree"
+                ],
+                datasets: [
+                    {
+                        label: "Precision@20",
+                        data: [0.30, 0.80, 0.70]
+                    },
+                    {
+                        label: "Precision@50",
+                        data: [0.26, 0.74, 0.80]
+                    },
+                    {
+                        label: "Average Precision",
+                        data: [0.332, 0.647, 0.605]
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: "top"
+                    },
+                    title: {
+                        display: true,
+                        text: "Held-out ranking performance (May–June 2026)"
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 1,
+                        title: {
+                            display: true,
+                            text: "Metric value (0–1)"
+                        }
+                    }
+                }
+            }
+        });
+    }
+})
+       
         .catch(error => {
             document.getElementById("report").innerHTML =
                 "<h2>Unable to load report</h2>" +
