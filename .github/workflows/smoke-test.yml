@@ -147,13 +147,12 @@ jobs:
               if [ "$code" != "200" ]; then
                 echo "::warning::Deployed paper URL returned HTTP $code - if you just enabled GitHub Pages, give it a few minutes and re-run this workflow."
 
-              elif ! grep -qi 'flyrank\.ai' /tmp/paper.html; then
-                echo "::error::Deployed paper is missing the required data credit - add the 'Acknowledgments & data credit' section linking to https://flyrank.ai (see the capstone card)."
-                exit 1
-
-              else
-                echo "Deployed paper reachable and carries the flyrank.ai data credit."
-              fi;;
+             elif ! grep -qi 'flyrank\.ai' work/capstone_report.md; then
+               echo "::error::The capstone report is missing the required FlyRank data credit."
+               exit 1
+             else
+               echo "Deployed paper reachable and the capstone report carries the flyrank.ai data credit."
+             fi;;
 
             *)
               echo "::warning::$f should contain exactly one https:// URL on the first line."
