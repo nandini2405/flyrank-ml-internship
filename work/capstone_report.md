@@ -313,8 +313,7 @@ The Logistic Regression ranking produced the highest reported Precision@20 and A
 
 ### Results comparison
 
-The following table compares the transparent baseline, Logistic Regression, and Decision Tree on the same held-out May → June 2026 test period.
-
+The following table and Figure 1 compare the transparent baseline, Logistic Regression, and Decision Tree on the same held-out May → June 2026 test period.
 
 | Model | Precision@20 | Precision@50 | Average Precision |
 |---|---:|---:|---:|
