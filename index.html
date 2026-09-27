@@ -27,7 +27,7 @@
 
         #chart-container {
             max-width: 900px;
-            margin: 40px;
+            margin: 40px 0;
         }
 
         h1, h2, h3, h4 {
@@ -64,15 +64,6 @@
     <p>Loading report...</p>
 </div>
 
-<div id="chart-container">
-    <h2>Results comparison</h2>
-    <p>
-        Held-out ranking performance on the May–June 2026 test period.
-    </p>
-
-    <canvas id="resultsChart"></canvas>
-</div>
-
 <script>
     const reportUrl =
         "https://raw.githubusercontent.com/nandini2405/flyrank-ml-internship/main/work/capstone_report.md";
@@ -87,9 +78,66 @@
         })
         .then(markdown => {
 
-            document.getElementById("report").innerHTML =
-                marked.parse(markdown);
+            const report = document.getElementById("report");
 
+            report.innerHTML = marked.parse(markdown);
+
+            /*
+             * Find the "Results comparison" heading.
+             */
+            const headings = report.querySelectorAll("h3");
+
+            let resultsHeading = null;
+
+            headings.forEach(heading => {
+                if (heading.textContent.trim().toLowerCase() === "results comparison") {
+                    resultsHeading = heading;
+                }
+            });
+
+            if (!resultsHeading) {
+                console.error("Results comparison heading not found.");
+                return;
+            }
+
+            /*
+             * Create the chart container.
+             */
+            const chartContainer = document.createElement("div");
+            chartContainer.id = "chart-container";
+
+            chartContainer.innerHTML = `
+                <canvas id="resultsChart"></canvas>
+            `;
+
+            /*
+             * Insert the chart immediately after the
+             * Results comparison section's table.
+             */
+            let current = resultsHeading.nextElementSibling;
+            let table = null;
+
+            while (current) {
+                if (current.tagName === "TABLE") {
+                    table = current;
+                    break;
+                }
+
+                current = current.nextElementSibling;
+            }
+
+            if (table) {
+                table.insertAdjacentElement("afterend", chartContainer);
+            } else {
+                resultsHeading.insertAdjacentElement(
+                    "afterend",
+                    chartContainer
+                );
+            }
+
+            /*
+             * Create the chart.
+             */
             const ctx = document.getElementById("resultsChart");
 
             new Chart(ctx, {
