@@ -309,7 +309,7 @@ These metrics are calculated separately for the transparent baseline, Logistic R
 
 On the held-out **May → June 2026** test period, the notebook's model comparison evaluates all three approaches using the same three metrics.
 
-The Logistic Regression ranking produced the highest reported values across the evaluated ranking metrics. At K=20, **16 of the top 20 Logistic Regression-ranked pages experienced the target CTR decline**, while **6 of the top 20 pages selected by the baseline experienced the target decline**.
+The Logistic Regression ranking produced the highest reported Precision@20 and Average Precision, while the Decision Tree produced the highest reported Precision@50. At K=20, 16 of the top 20 Logistic Regression-ranked pages experienced the target CTR decline, while 6 of the top 20 pages selected by the baseline experienced the target decline.
 
 The results indicate that, on this held-out period, the Logistic Regression ranking placed more observed CTR declines near the top of the review queue than the transparent baseline.
 
