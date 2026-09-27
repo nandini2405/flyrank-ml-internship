@@ -517,4 +517,4 @@ The analysis relies on the Python/Colab environment and libraries imported by th
 
 This project was built using the **FlyRank ML Internship dataset**.
 
-Data source: [FlyRank](https://flyrank.ai)cdgi
+Data source: [FlyRank](https://flyrank.ai)
