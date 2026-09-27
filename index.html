@@ -8,11 +8,55 @@
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #ffffff;
+            color: #222222;
+        }
+
+        #report {
+            max-width: 1100px;
+            margin: 40px 0 40px 40px;
+            padding: 0 30px 40px 0;
+            text-align: left;
+        }
+
+        h1, h2, h3, h4 {
+            text-align: left;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #cccccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 4px;
+        }
+
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            overflow-x: auto;
+        }
+    </style>
 </head>
 
 <body>
 
+<div id="report">
+    <p>Loading report...</p>
+</div>
 
 <script>
     const reportUrl =
